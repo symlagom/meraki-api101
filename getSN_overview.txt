@@ -1,0 +1,34 @@
+2. Hausaugabe
+
+1. Org: Devnet Sandbox
+	Liste die vorhandenen Switches und deren SN auf
+
+2. Org: Devnet Sandbox
+	Gib die Portconfig der vorhandenen Switches aus
+
+Schwierigkeiten/Besonderheiten:
+- API calls: Request erstellen (hier: f-String)
+- API calls: Auswertung der Antworten, Umgang mit Fehlern
+- Portkonfiguration nur für Switche ("MS") abfragen
+- max 5 API/calls pro Sekunde
+- Darstellung großer Informationen (Portkonfiguration)
+
+
+#####################################################
+Programmablauf:
+Task 0) Nutzerabfrage
+- Welche Organisation?
+- Speichern der Portkonfiguration?
+
+Task 1) 
+1a) API call mit Organization-ID zur Darstellung aller Switche
+1b) Ausgabe der Informationen in Tabelle
+
+Task 2)
+2a) Pfad für Ordner der Portkonfiguratio vorbereiten (inkl. Datum/Uhrzeit)
+	(später wird die Device-Liste iteriert, da sollte der Pfad nicht
+	ständig neu bestimmt werden -> daher dieser Schritt zuvor)
+2b) Über Device Liste (aus Task 1) iterieren
+	- prüfen ob Device ein Switch ist ("MS")
+	- prüfen, ob die Information ausgegeben oder gespeichert werden soll
+	(- nach 5 Abfragen 1 Sekunde pausieren)
