@@ -36,32 +36,32 @@ def main():
     api_key = '6bec40cf957de430a6f1f2baa056b99a4fac9ea0'
     # default variables
     organization_def = 'DevNet Sandbox'
-    
+
     print('### Cisco Meraki API 101 - Hausaufgabe 2 ###')
 
     # Task 0) Abfrage von Eingaben
-    # Task 0a) Organisation 
-    
+    # Task 0a) Organisation
+
     # Abrufen aller möglichern Organization-IDs
-    url_id = f'{base_url}organizations' 
-    header_id = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'} 
-    warnings.simplefilter("ignore", exceptions.InsecureRequestWarning) 
-    response_id = requests.get(url_id, headers=header_id, verify=False) 
+    url_id = f'{base_url}organizations'
+    header_id = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'}
+    warnings.simplefilter("ignore", exceptions.InsecureRequestWarning)
+    response_id = requests.get(url_id, headers=header_id, verify=False)
     # Errorhandling
     if response_id.status_code != 200:
         raise APIError('Fehler {}'.format(response_id.status_code))
-    
+
     # Ausgabe der verfügbaren Organisationen
     org_list = response_id.json()
     print('Übersicht der verfügbaren Organisationen:')
     for counter, org in enumerate(org_list):
         orgName = org['name']
         print(f'  [{counter}] {orgName}')
-        
+
         # Werte für Default (Devnet Sandbox ermitteln
         if orgName == organization_def:
             orgNr_def = counter
-    
+
     # Schleife zur Abfrage der zu untersuchenden Organisation
     while True:
         eingabe_org = input(f'1. Welche Organisation [0-{counter}] soll abgefragt werden? [[{orgNr_def}] {organization_def}] :')
@@ -83,15 +83,15 @@ def main():
             if (0 <= orgNr <= counter):
                 # Schleife zum Abfragen der Eingabe kann verlassen werden
                 break
-        
+
         # Nutzereingabe war nicht korrekt => Fehlermeldung und erneuter Schleifendurchlauf
         print('\033[31m' + 'Bitte die Listennummer der Organisation eingeben'  + '\033[0m')
-    
+
     # Nutzereingabe in Variablen schreiben
     organization = org_list[orgNr]['name']
     organizationID = org_list[orgNr]['id']
     print(f'Organisation: [{orgNr}] {organization}')
-    
+
     # Schleife zur Abfrage der Speicherung der Portkonfiguration
     while True:
         eingabe_outpFormat = input(f'2. Sollen Dateien zur Portkonfiguration gespeichert werden? [Ja] :')
@@ -103,29 +103,29 @@ def main():
             # Hilfsvariable, die festhält, ob Konfiguration als Dateien gespeichert werden soll
             save_portConf = False
             break
-        
-    
+
+
     # Task 1) Liste die vorhandenen Switches und deren SN der ausgewählten Organisation auf:
     print(' ### Aufgabe 1 ###')
     print(organization, 'hat folgende Organization-ID: ', organizationID)
-    
+
     # Task 1a) Liste der Devices erhalten
     """
-    	curl 	-L 
-    			-H 'X-Cisco-Meraki-API-Key: <key>' 
-    			-H 'Content-Type: application/json' 
+    	curl 	-L
+    			-H 'X-Cisco-Meraki-API-Key: <key>'
+    			-H 'Content-Type: application/json'
     			-X GET 'https://api.meraki.com/api/v0/organizations/{organizationId}/devices'
     """
 
     url_dev = f'{base_url}organizations/{organizationID}/devices'
     header_dev = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'}
-    
+
     response_dev = requests.get(url_dev, headers=header_dev, verify=False)
     # Errorhandling
     if response_dev.status_code != 200:
         raise APIError('Fehler {}'.format(response_dev.status_code))
-    
-    
+
+
     # 1b) Ausgabe der Devices
     devices = response_dev.json()
     devicesNr = len(devices)
@@ -137,33 +137,35 @@ def main():
     for i, listelement in enumerate(devices):
         # Ausgabe aller Keys eines Dictionaries
         print(listelement['model'].ljust(15, ' '), listelement['networkId'].ljust(25, ' '), listelement['serial'].ljust(25, ' '))
-    
+
 
     # Task 2) Gib die Portconfig der vorhandenen Switches aus
     print('\n', 30*'-')
     print(' ### Aufgabe 2 ###')
-    
+
     '''
     curl    -L
-            -H 'X-Cisco-Meraki-API-Key: <key>' 
-            -H 'Content-Type: application/json' 
+            -H 'X-Cisco-Meraki-API-Key: <key>'
+            -H 'Content-Type: application/json'
             -X GET 'https://api.meraki.com/api/v0/devices/{serial}/switchPorts'
     '''
     header_port = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'}
     allSwitches = {}
-    
-    # Task 2a) Pfad für Unterordner zum Speichern der Portconfig vorbereiten 
-    # Step 1: Ordnernamen definieren
-    curr_time = datetime.datetime.now()
-    # Ausgabe der Zeit formatieren
-    time_path = curr_time.strftime('%Y-%m-%d_%H%M%S')
-    # Namen für Unterordner zum Speichern der Dateien definieren
-    job_path = f'{organization}_{time_path}'
-    # Step 2: Prüfen, ob Unterordner bereits existiert, falls nicht muss Ordner angelegt werden
-    if os.path.exists(job_path) == False:
-        # Ordner mit der Organisation und der aktuellen Zeit erstellen
-        os.mkdir(job_path)
-    
+
+    # Unterordner anlegen, wenn Portconfig gespeichert werden soll
+    if save_portConf:
+        # Task 2a) Pfad für Unterordner zum Speichern der Portconfig vorbereiten
+        # Step 1: Ordnernamen definieren
+        curr_time = datetime.datetime.now()
+        # Ausgabe der Zeit formatieren
+        time_path = curr_time.strftime('%Y-%m-%d_%H%M%S')
+        # Namen für Unterordner zum Speichern der Dateien definieren
+        job_path = f'{organization}_{time_path}'
+        # Step 2: Prüfen, ob Unterordner bereits existiert, falls nicht muss Ordner angelegt werden
+        if os.path.exists(job_path) == False:
+            # Ordner mit der Organisation und der aktuellen Zeit erstellen
+            os.mkdir(job_path)
+
     # Task 2b) Über Device-Liste iterieren und für jeden Switch die Portconfig abfragen
     for counter, element in enumerate(devices):
         # Prüfen, ob das Device ein Switch ist (Model beginnt mit 'MS')
@@ -176,7 +178,7 @@ def main():
             # Errorhandling
             if response_port.status_code != 200:
                 raise APIError('Fehler {}'.format(response_port.status_code))
-            
+
             switch_config = response_port.json()
             # Ausgabe der Portconfig in Datei
             if save_portConf:
@@ -193,12 +195,12 @@ def main():
                 print(switch_config_formatted)
         else:
             continue
-        
+
         # Auf 5 Anfragen/Sekunde gegen die API begrenzen
         # Da die Anfragen der Portconfig aber einige Zeit benötigen, ist dies eigentlich nicht notwendig
         if counter % 5 == 0:
             time.sleep(1)
-    
+
     print('\n', 30*'-')
     print(' ### Finish ###')
 
