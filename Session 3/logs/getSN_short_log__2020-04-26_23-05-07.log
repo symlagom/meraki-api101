@@ -1,0 +1,53 @@
+2020-04-26 23:05:07       meraki:     INFO > Meraki dashboard API session initialized with these parameters: {'self': <meraki.rest_session.RestSession object at 0x0000025A5D2F5388>, 'logger': <Logger meraki (DEBUG)>, 'api_key': '************************************9ea0', 'base_url': 'https://api-mp.meraki.com/api/v0/', 'single_request_timeout': 60, 'certificate_path': '', 'wait_on_rate_limit': True, 'nginx_429_retry_wait_time': 60, 'action_batch_retry_wait_time': 60, 'retry_4xx_error': False, 'retry_4xx_error_wait_time': 60, 'maximum_retries': 2, 'simulate': False, '__class__': <class 'meraki.rest_session.RestSession'>}
+2020-04-26 23:05:07       meraki:    DEBUG > {'tags': ['Organizations'], 'operation': 'getOrganizations', 'method': 'GET', 'url': '/organizations', 'params': None}
+2020-04-26 23:05:07 urllib3.connectionpool:    DEBUG > Starting new HTTPS connection (1): api-mp.meraki.com:443
+2020-04-26 23:05:08 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/organizations HTTP/1.1" 200 None
+2020-04-26 23:05:08       meraki:     INFO > Organizations, getOrganizations - 200 OK
+2020-04-26 23:05:11       meraki:    DEBUG > {'tags': ['Organizations'], 'operation': 'getOrganizationInventory', 'method': 'GET', 'url': '/organizations/549236/inventory', 'params': {}}
+2020-04-26 23:05:11 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/organizations/549236/inventory HTTP/1.1" 200 None
+2020-04-26 23:05:11       meraki:     INFO > Organizations, getOrganizationInventory - 200 OK
+2020-04-26 23:05:11       meraki:    DEBUG > {'tags': ['Organizations'], 'operation': 'getOrganizationDeviceStatuses', 'method': 'GET', 'url': '/organizations/549236/deviceStatuses', 'params': None}
+2020-04-26 23:05:12 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/organizations/549236/deviceStatuses HTTP/1.1" 200 None
+2020-04-26 23:05:12       meraki:     INFO > Organizations, getOrganizationDeviceStatuses - 200 OK
+2020-04-26 23:05:12       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-JBEW-FN7B/switchPorts', 'params': None}
+2020-04-26 23:05:12 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-JBEW-FN7B/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:12       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:13       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2BPP-PF75/switchPorts', 'params': None}
+2020-04-26 23:05:14 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2BPP-PF75/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:14       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:14       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2BSR-S6FS/switchPorts', 'params': None}
+2020-04-26 23:05:15 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2BSR-S6FS/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:15       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:16       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2BWP-FQHX/switchPorts', 'params': None}
+2020-04-26 23:05:18 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2BWP-FQHX/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:18       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:18       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2CA5-RW6A/switchPorts', 'params': None}
+2020-04-26 23:05:18 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2CA5-RW6A/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:18       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:18       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2CPC-JCYZ/switchPorts', 'params': None}
+2020-04-26 23:05:19 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2CPC-JCYZ/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:19       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:19       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2GW-2WW9-LLZC/switchPorts', 'params': None}
+2020-04-26 23:05:21 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2GW-2WW9-LLZC/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:21       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:21       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-DHZ4-VFL4/switchPorts', 'params': None}
+2020-04-26 23:05:22 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-DHZ4-VFL4/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:22       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:23       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-AJ22-UG72/switchPorts', 'params': None}
+2020-04-26 23:05:24 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-AJ22-UG72/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:24       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:24       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-F5K5-R88R/switchPorts', 'params': None}
+2020-04-26 23:05:25 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-F5K5-R88R/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:25       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:25       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-WH5E-MK7H/switchPorts', 'params': None}
+2020-04-26 23:05:25 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-WH5E-MK7H/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:25       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:25       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-TQPZ-M5LP/switchPorts', 'params': None}
+2020-04-26 23:05:26 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-TQPZ-M5LP/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:26       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:26       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-DT5F-KMJE/switchPorts', 'params': None}
+2020-04-26 23:05:27 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-DT5F-KMJE/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:27       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
+2020-04-26 23:05:27       meraki:    DEBUG > {'tags': ['Switch ports'], 'operation': 'getDeviceSwitchPorts', 'method': 'GET', 'url': '/devices/Q2HP-Q9S8-BVHB/switchPorts', 'params': None}
+2020-04-26 23:05:27 urllib3.connectionpool:    DEBUG > https://api-mp.meraki.com:443 "GET /api/v0/devices/Q2HP-Q9S8-BVHB/switchPorts HTTP/1.1" 200 None
+2020-04-26 23:05:27       meraki:     INFO > Switch ports, getDeviceSwitchPorts - 200 OK
