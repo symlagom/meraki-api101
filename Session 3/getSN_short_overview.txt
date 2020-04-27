@@ -8,50 +8,50 @@ Aufgaben
 2. Org: Devnet Sandbox
 	Gib die Portconfig der vorhandenen Switches aus
 
-Schwierigkeiten/Besonderheiten:
-- Request Call in Funktionsaufruf des Moduls Meraki umwandeln
-HA 2:
-  url_dev = f'{base_url}organizations/{organizationID}/devices'
-  header_dev = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'}
-
-  response_dev = requests.get(url_dev, headers=header_dev, verify=False)
-  # Errorhandling
-  if response_dev.status_code != 200:
-      raise APIError('Fehler {}'.format(response_dev.status_code))
-
-HA 3:
-  dashboard_call = meraki.DashboardAPI(
-        base_url = 'https://api-mp.meraki.com/api/v0/',
-        api_key = '6bec40cf957de430a6f1f2baa056b99a4fac9ea0',
-        log_file_prefix=os.path.basename(__file__)[:-3],
-        log_path='./logs/',
-        print_console=False
-  )
-  devices_helper = dashboard_call.organizations.getOrganizationInventory(organizationID)
-
-- !Achtung: Abfragen liefern unterschiedliche Ergebnisse
-- Analyse ob Device eine gültige "networkId" besitzt
-
-- Zusatz:
-  *Ausgabe aller Devices, geordnet nach "Swtich" und "Other Devices"
-  *Ausgabe des Status (online/offline)
-
-
-#####################################################
+################################################################################
 Programmablauf:
-Task 0) Nutzerabfrage
-- Welche Organisation?
-- Speichern der Portkonfiguration?
+  Task 0) Nutzerabfrage
+  - Welche Organisation?
+  - Speichern der Portkonfiguration?
 
-Task 1)
-1a) API call mit Organization-ID zur Darstellung aller Switche
-1b) Ausgabe der Informationen in Tabelle
+  Task 1)
+  1a) API call mit Organization-ID zur Darstellung aller Switche
+  1b) Ausgabe der Informationen in Tabelle
 
-Task 2)
-2a) Pfad für Ordner der Portkonfiguratio vorbereiten (inkl. Datum/Uhrzeit)
-	(später wird die Device-Liste iteriert, da sollte der Pfad nicht
-	ständig neu bestimmt werden -> daher dieser Schritt zuvor)
-2b) Über Device Liste (aus Task 1) iterieren
-	- prüfen ob Device ein Switch ist ("MS")
-	- prüfen, ob die Information ausgegeben oder gespeichert werden soll
-	(- nach 5 Abfragen 1 Sekunde pausieren)
+  Task 2)
+  2a) Pfad für Ordner der Portkonfiguration vorbereiten (inkl. Datum/Uhrzeit)
+  	(später wird die Device-Liste iteriert, da sollte der Pfad nicht
+  	ständig neu bestimmt werden -> daher dieser Schritt zuvor)
+  2b) Über Device Liste (aus Task 1) iterieren
+  	- prüfen ob Device ein Switch ist ("MS")
+  	- prüfen, ob die Information ausgegeben oder gespeichert werden soll
+  	(- nach 5 Abfragen 1 Sekunde pausieren)
+
+################################################################################
+Schwierigkeiten/Besonderheiten:
+  - Request Call in Funktionsaufruf des Moduls Meraki umwandeln
+  HA 2:
+    url_dev = f'{base_url}organizations/{organizationID}/devices'
+    header_dev = {'X-Cisco-Meraki-API-Key': api_key, 'Content-Type': 'application/json'}
+
+    response_dev = requests.get(url_dev, headers=header_dev, verify=False)
+    # Errorhandling
+    if response_dev.status_code != 200:
+        raise APIError('Fehler {}'.format(response_dev.status_code))
+
+  HA 3: Zeile 125
+    dashboard_call = meraki.DashboardAPI(
+          base_url = 'https://api-mp.meraki.com/api/v0/',
+          api_key = '6bec40cf957de430a6f1f2baa056b99a4fac9ea0',
+          log_file_prefix=os.path.basename(__file__)[:-3],
+          log_path='./logs/',
+          print_console=False
+    )
+    devices_helper = dashboard_call.organizations.getOrganizationInventory(organizationID)
+
+  - !Achtung: Abfragen liefern unterschiedliche Ergebnisse
+  - Analyse ob Device eine gültige "networkId" besitzt
+
+  - Zusatz:
+    *Ausgabe aller Devices, geordnet nach "Swtich" und "Other Devices"
+    *Ausgabe des Status (online/offline)
